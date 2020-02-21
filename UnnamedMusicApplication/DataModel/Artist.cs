@@ -2,7 +2,7 @@
 
 namespace UnnamedMusicApplication.DataModel
 {
-    public class Artist
+    public class Artist : BaseEntity
     {
         public string Name { get; set; }
         /// <summary>

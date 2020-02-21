@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UnnamedMusicApplication.DataModel
 {
-    public class Album
+    public class Album : BaseEntity
     {
         public string Name { get; set; }
         public DateTime DateReleased { get; set; }

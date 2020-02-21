@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UnnamedMusicApplication.DataModel
 {
-    public class Song
+    public class Song : BaseEntity
     {
         public string Path { get; set; }
         public string Name { get; set; }
