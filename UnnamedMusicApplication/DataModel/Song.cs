@@ -7,7 +7,6 @@ namespace UnnamedMusicApplication.DataModel
     public class Song : BaseEntity
     {
         public string Path { get; set; }
-        public string Name { get; set; }
         public int TrackNo { get; set; }
         public DateTime DateReleased { get; set; }
         public TimeSpan Duration { get; set; }

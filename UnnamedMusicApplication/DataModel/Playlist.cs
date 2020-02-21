@@ -6,6 +6,6 @@ namespace UnnamedMusicApplication.DataModel
 {
     public class Playlist : BaseEntity
     {
-
+        public IList<SongDto> SongDtos { get; set; }
     }
 }
