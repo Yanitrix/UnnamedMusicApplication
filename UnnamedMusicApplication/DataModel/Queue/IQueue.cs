@@ -20,5 +20,7 @@ namespace UnnamedMusicApplication.DataModel.Queue
 
         void Add(T obj);
 
+        void Clear();
+
     }
 }

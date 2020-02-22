@@ -4,13 +4,13 @@ using System.Text;
 
 namespace UnnamedMusicApplication.DataModel.Queue
 {
-    public class Queue : IQueue<SongDto>
+    public class Queue : IQueue<Song>
     {
         private int currentIndex = 0;
-        private List<SongDto> songs = new List<SongDto>();
+        private List<Song> songs = new List<Song>();
 
-        public SongDto Current { get => songs[currentIndex]; }
-        public SongDto Next
+        public Song Current { get => songs[currentIndex]; }
+        public Song Next
         {
             get
             {
@@ -18,7 +18,7 @@ namespace UnnamedMusicApplication.DataModel.Queue
                 return Current;
             }
         }
-        public SongDto Previous
+        public Song Previous
         {
             get
             {
@@ -27,26 +27,30 @@ namespace UnnamedMusicApplication.DataModel.Queue
             }
         }
 
-        public void Insert(SongDto obj)
+        public void Insert(Song obj)
         {
             songs.Insert(currentIndex++, obj);
         }
 
-        public void Insert(IEnumerable<SongDto> objs)
+        public void Insert(IEnumerable<Song> objs)
         {
             songs.InsertRange(currentIndex++, objs);
         }
 
-        public void Jump(IEnumerable<SongDto> objs)
+        public void Jump(IEnumerable<Song> objs)
         {
             songs.RemoveRange(currentIndex++, songs.Count - currentIndex - 1);
             songs.AddRange(objs); 
         }
 
-        public void Add(SongDto obj)
+        public void Add(Song obj)
         {
             songs.Add(obj);
         }
 
+        public void Clear()
+        {
+            songs.Clear();
+        }
     }
 }
