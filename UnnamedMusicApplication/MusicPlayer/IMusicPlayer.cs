@@ -21,8 +21,6 @@ namespace UnnamedMusicApplication.MusicPlayer
 
         event EventHandler OnPlayingFinished;
 
-        Task SkipForward(int seconds);
-
-        Task SkipBackward(int seconds);
+        Task Jump(int seconds);
     }
 }

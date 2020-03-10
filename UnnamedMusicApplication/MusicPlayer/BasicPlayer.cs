@@ -48,12 +48,7 @@ namespace UnnamedMusicApplication.MusicPlayer
             return player.Stop();
         }
 
-        public Task SkipBackward(int seconds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SkipForward(int seconds)
+        public Task Jump(int seconds)
         {
             throw new NotImplementedException();
         }
