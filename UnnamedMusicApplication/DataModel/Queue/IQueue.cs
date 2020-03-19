@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UnnamedMusicApplication.DataModel.Queue
 {
-    interface IQueue<T>
+    public interface IQueue<T>
     {
         T Current { get; }
 
@@ -41,6 +41,12 @@ namespace UnnamedMusicApplication.DataModel.Queue
         /// Removes all elements from the queue.
         /// </summary>
         void Clear();
+
+        /// <summary>
+        /// Clears the whole queue and seeds it with given elements.
+        /// </summary>
+        /// <param name="objs"></param>
+        void Set(IEnumerable<T> objs);
 
         /// <summary>
         /// Used for testinng only.
