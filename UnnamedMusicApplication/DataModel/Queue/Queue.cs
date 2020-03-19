@@ -7,7 +7,7 @@ namespace UnnamedMusicApplication.DataModel.Queue
     public class Queue : IQueue<Song>
     {
         private int currentIndex = 0;
-        private List<Song> songs = new List<Song>();
+        private readonly List<Song> songs = new List<Song>();
 
         public Song Current { get => songs[currentIndex]; }
         public Song Next
@@ -51,6 +51,11 @@ namespace UnnamedMusicApplication.DataModel.Queue
         public void Clear()
         {
             songs.Clear();
+        }
+
+        public Song[] ToArray()
+        {
+            return songs.ToArray();
         }
     }
 }
