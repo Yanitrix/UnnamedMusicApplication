@@ -15,5 +15,23 @@ namespace UnnamedMusicApplication.DataModel
 
         //public Artist Artist { get; set; }
         // TODO: for now because can be got by album property, maybe will be added later 
+
+
+        /// <summary>
+        /// now only for unit testing
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (this == obj) return true;
+
+            Song that = obj as Song;
+            if (that == null) return false;
+
+            if (this.Name.Equals(that.Name) && this.ID == that.ID) return true;
+            return false;
+        }
     }
 }
