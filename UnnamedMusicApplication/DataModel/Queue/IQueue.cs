@@ -42,5 +42,11 @@ namespace UnnamedMusicApplication.DataModel.Queue
         /// </summary>
         void Clear();
 
+        /// <summary>
+        /// Used for testinng only.
+        /// </summary>
+        /// <returns></returns>
+        T[] ToArray();
+
     }
 }
