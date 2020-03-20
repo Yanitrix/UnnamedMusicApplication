@@ -6,6 +6,6 @@ namespace UnnamedMusicApplication.DataModel
     public class Album : Playlist
     {
         public DateTime DateReleased { get; set; }
-        public IList<Artist> Artists { get; set; }
+        public IList<Artist> Artists { get; set; } = new List<Artist>();
     }
 }

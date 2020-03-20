@@ -7,14 +7,14 @@ namespace UnnamedMusicApplication.DataModel
     public class Song : BaseEntity
     {
         public string Path { get; set; }
+
+        //tag properties
         public int TrackNo { get; set; }
         public DateTime DateReleased { get; set; }
         public TimeSpan Duration { get; set; }
         public string Comments { get; set; }
         public Album Album { get; set; }
-
-        //public Artist Artist { get; set; }
-        // TODO: for now because can be got by album property, maybe will be added later 
+        public Artist Artist { get; set; }
 
 
         /// <summary>
@@ -30,8 +30,12 @@ namespace UnnamedMusicApplication.DataModel
             Song that = obj as Song;
             if (that == null) return false;
 
-            if (this.Name.Equals(that.Name) && this.ID == that.ID) return true;
-            return false;
+            return this.Name.Equals(that.Name) && this.ID == that.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Path, TrackNo, DateReleased, Duration, Comments, Album);
         }
     }
 }
