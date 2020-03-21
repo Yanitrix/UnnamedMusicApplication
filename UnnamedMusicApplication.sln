@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnnamedMusicApplication", "UnnamedMusicApplication\UnnamedMusicApplication.csproj", "{5D79E82B-343E-4385-8937-7D9C4D6918FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel.Tests", "DataModel.Tests\DataModel.Tests.csproj", "{6F40B70C-3B0B-4A31-BB1F-2110DA36F998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel.Tests", "DataModel.Tests\DataModel.Tests.csproj", "{6F40B70C-3B0B-4A31-BB1F-2110DA36F998}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

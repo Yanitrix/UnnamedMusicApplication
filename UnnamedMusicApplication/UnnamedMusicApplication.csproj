@@ -9,4 +9,20 @@
     <PackageReference Include="NetCoreAudio" Version="1.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="libs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Id3">
+      <HintPath>libs\Id3.dll</HintPath>
+    </Reference>
+    <Reference Include="Id3.Files">
+      <HintPath>libs\Id3.Files.dll</HintPath>
+    </Reference>
+    <Reference Include="Id3.WinForms">
+      <HintPath>libs\Id3.WinForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
