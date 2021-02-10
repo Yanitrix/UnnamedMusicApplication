@@ -8,12 +8,6 @@ namespace UnnamedMusicApplication.Tags
 {
     public class ExternLibraryTagProvider : ITagProvider
     {
-
-        //public ExternLibraryTagProvider()
-        //{
-
-        //}
-
         public Dictionary<string, string> Tags { get; private set; } = new Dictionary<string, string>();
 
         public void Clear()
@@ -23,6 +17,8 @@ namespace UnnamedMusicApplication.Tags
 
         public void Set(string path)
         {
+            if (!path.EndsWith(".mp3")) throw new ArgumentException("Unsupported file format. Must be .mp3");
+
             using (var mp3 = new Mp3File(path))
             {
                 Id3Tag tag = mp3.GetTag(Id3TagFamily.FileStartTag);
@@ -33,7 +29,7 @@ namespace UnnamedMusicApplication.Tags
                 StringBuilder sb = new StringBuilder();
                 foreach(var value  in tag.Comments)
                 {
-                    sb.Append(value.Comment).Append("|");
+                    sb.AppendLine(value.Comment);
                 }
                 Tags["Comments"] = sb.ToString();
 
