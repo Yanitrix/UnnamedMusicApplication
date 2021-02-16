@@ -47,7 +47,7 @@ namespace Infrastructure.MusicPlayer
             return player.Stop();
         }
 
-        public Task Jump(int seconds)
+        public Task Seek(int seconds)
         {
             throw new NotImplementedException();
         }
