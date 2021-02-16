@@ -1,13 +1,12 @@
-﻿using NetCoreAudio;
+﻿using Domain.MusicPlayer;
+using NetCoreAudio;
 using NetCoreAudio.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace UnnamedMusicApplication.MusicPlayer
+namespace Infrastructure.MusicPlayer
 {
-    class BasicPlayer : IMusicPlayer
+    public class BasicPlayer : IMusicPlayer
     {
         private readonly IPlayer player;
 

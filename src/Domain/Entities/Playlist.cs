@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UnnamedMusicApplication.DataModel
+namespace Domain.DataModel
 {
     public class Playlist : BaseEntity
     {

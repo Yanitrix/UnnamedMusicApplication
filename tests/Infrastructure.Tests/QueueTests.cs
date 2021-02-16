@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Domain.DataModel;
+using Domain.DataModel.Queue;
+using Infrastructure.Queue;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnnamedMusicApplication.DataModel;
-using UnnamedMusicApplication.DataModel.Queue;
 using Xunit;
 
 namespace DataModel.Tests
