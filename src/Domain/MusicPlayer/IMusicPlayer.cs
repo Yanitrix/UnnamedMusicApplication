@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.MusicPlayer
@@ -15,12 +13,12 @@ namespace Domain.MusicPlayer
 
         Task Pause();
 
+        Task Seek(int seconds);
+
         bool Playing { get; }
 
         bool Paused { get; }
 
         event EventHandler OnPlayingFinished;
-
-        Task Jump(int seconds);
     }
 }

@@ -3,40 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Domain.Tags;
+using System.Collections.Immutable;
+using Domain.Exceptions;
 
 namespace Infrastructure.Tags
 {
     public class ExternLibraryTagProvider : ITagProvider
     {
-        public Dictionary<string, string> Tags { get; private set; } = new Dictionary<string, string>();
-
-        public void Clear()
+        public IReadOnlyDictionary<string, string> ReadTags(string filePath)
         {
-            Tags = new Dictionary<string, string>();
-        }
+            var tags = new Dictionary<String, String>();
 
-        public void Set(string path)
-        {
-            if (!path.EndsWith(".mp3")) throw new ArgumentException("Unsupported file format. Must be .mp3");
+            if (!filePath.EndsWith(".mp3")) throw new UnsupportedFileFormatException("Unsupported file format. Must be .mp3");
 
-            using (var mp3 = new Mp3File(path))
+            using (var mp3 = new Mp3File(filePath))
             {
                 Id3Tag tag = mp3.GetTag(Id3TagFamily.FileStartTag);
 
-                Tags.Add("Album", tag.Album.Value);
-                Tags["Artist"] = tag.Artists.Value;
+                tags.Add("Album", tag.Album.Value);
+                tags["Artist"] = tag.Artists.Value;
 
                 StringBuilder sb = new StringBuilder();
-                foreach(var value  in tag.Comments)
+                foreach (var value in tag.Comments)
                 {
                     sb.AppendLine(value.Comment);
                 }
-                Tags["Comments"] = sb.ToString();
+                tags["Comments"] = sb.ToString();
 
-                Tags["TrackNo"] = tag.Track.Value;
+                tags["TrackNo"] = tag.Track.Value;
 
-                Tags["DateReleased"] = tag.Year.Value;
+                tags["DateReleased"] = tag.Year.Value;
             }
+
+            return tags.ToImmutableDictionary();
         }
     }
 }

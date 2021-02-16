@@ -6,6 +6,6 @@ namespace Domain.DataModel
     public class Album : Playlist
     {
         public DateTime DateReleased { get; set; }
-        public IList<Artist> Artists { get; set; } = new List<Artist>();
+        public IList<Artist> Artists { get; } = new List<Artist>();
     }
 }

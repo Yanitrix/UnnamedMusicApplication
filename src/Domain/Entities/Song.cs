@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.DataModel
 {
@@ -13,7 +11,11 @@ namespace Domain.DataModel
         public DateTime DateReleased { get; set; }
         public TimeSpan Duration { get; set; }
         public string Comments { get; set; }
+
+        public long AlbumID { get; set; }
         public Album Album { get; set; }
+        
+        public long ArtistID { get; set; }
         public Artist Artist { get; set; }
 
 
@@ -21,7 +23,6 @@ namespace Domain.DataModel
         /// now only for unit testing
         /// </summary>
         /// <param name="obj"></param>
-        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

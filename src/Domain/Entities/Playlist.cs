@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Domain.DataModel
 {
     public class Playlist : BaseEntity
     {
-        public virtual IList<Song> Songs { get; set; } = new List<Song>();
+        public virtual IList<Song> Songs { get; } = new List<Song>();
     }
 }
