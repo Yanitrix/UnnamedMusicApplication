@@ -1,15 +1,15 @@
 ﻿using Domain.DataModel;
 using Domain.DataModel.Queue;
-using Infrastructure.Queue;
+using Infrastructure.SongQueue;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace DataModel.Tests
+namespace Infrastructure.Tests
 {
     public class QueueTests
     {
-        public IQueue<Song> Queue = new Queue();
+        public ISongQueue Queue = new Queue();
         private static List<Song> first, second, third;
 
         public QueueTests()
@@ -30,10 +30,9 @@ namespace DataModel.Tests
         [Fact]
         public void Insert_InsertingAnElement_ShouldEqual()
         {
-
             //preapre 
 
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             Song song = new Song
             {
                 ID = 30,
@@ -90,7 +89,7 @@ namespace DataModel.Tests
         {
             //preapre 
 
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             List<Song> toBeInserted = new List<Song>
             {
                 new Song
@@ -160,7 +159,7 @@ namespace DataModel.Tests
         [Fact]
         public void Jump_RemoveAllToEndAndInsertRange_ShoudlEqual()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Set(first);
 
             List<Song> toBeInserted = second;
@@ -178,7 +177,7 @@ namespace DataModel.Tests
             _ = queue.Next;
             _ = queue.Next;
 
-            queue.Jump(second);
+            queue.Replace(second);
 
             Song[] expected = toExpect.ToArray();
             Song[] actual = queue.ToArray();
@@ -190,7 +189,7 @@ namespace DataModel.Tests
         [Fact]
         public void Add_AddToEnd_ShouldEqual()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Set(second);
 
             Song song = new Song
@@ -199,7 +198,7 @@ namespace DataModel.Tests
                 Name = "Kitty Later"
             };
 
-            List<Song> list = second.Select(x => x).ToList();
+            List<Song> list = second.ToList();
             list.Add(song);
             queue.Add(song);
 
@@ -213,18 +212,18 @@ namespace DataModel.Tests
         [Fact]
         public void Clear_ShouldBeEmpty()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Set(second);
 
             queue.Clear();
 
-            Assert.False(queue.ToArray().Any());
+            Assert.Empty(queue.ToArray());
         }
 
         [Fact]
         public void Set_ShouldEqual()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Insert(third);
 
             queue.Set(first);
@@ -238,7 +237,7 @@ namespace DataModel.Tests
         [Fact]
         public void Current_ShouldReturnCurrentElement()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Set(third);
 
             Song expected1 = new Song
@@ -281,7 +280,7 @@ namespace DataModel.Tests
         [Fact]
         public void Next_FewTimes_ShouldReturnNext()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Set(second);
 
             Song actual1 = queue.Next;
@@ -307,7 +306,7 @@ namespace DataModel.Tests
         [Fact]
         public void Previous_FewTimes_ShouldReturnPrevious()
         {
-            IQueue<Song> queue = new Queue();
+            ISongQueue queue = new Queue();
             queue.Set(first);
 
             Song expected1 = new Song

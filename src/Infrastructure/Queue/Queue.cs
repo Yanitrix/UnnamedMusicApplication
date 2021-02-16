@@ -1,17 +1,15 @@
 ﻿using Domain.DataModel;
 using Domain.DataModel.Queue;
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Infrastructure.Queue
+namespace Infrastructure.SongQueue
 {
-    public class Queue : IQueue<Song>
+    public class Queue : ISongQueue
     {
         /// <summary>
         /// should be -1 and then the first song is gonna be "Next"
         /// </summary>
-        /// 
 
         //TODO: think what happens when there's no Previous or Next
         private int currentIndex = -1;
@@ -46,7 +44,7 @@ namespace Infrastructure.Queue
             songs.InsertRange(currentIndex + 1, objs);
         }
 
-        public void Jump(IEnumerable<Song> objs)
+        public void Replace(IEnumerable<Song> objs)
         {
             songs.RemoveRange(currentIndex + 1, songs.Count - currentIndex - 1);
             songs.AddRange(objs);
@@ -69,10 +67,8 @@ namespace Infrastructure.Queue
             Insert(objs);
         }
 
-        public Song[] ToArray()
-        {
-            return songs.ToArray();
-        }
+        public IEnumerator<Song> GetEnumerator() => songs.GetEnumerator();
 
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
