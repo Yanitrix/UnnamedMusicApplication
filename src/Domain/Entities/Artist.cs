@@ -7,6 +7,6 @@ namespace Domain.DataModel
         /// <summary>
         /// Every song that doesn't have an Album is on an album called "unnamed" //or zero maybe gonna change it
         /// </summary>
-        public IList<Album> Albums { get; set; } = new List<Album>();
+        public IList<Album> Albums { get; } = new List<Album>();
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.DataModel
+﻿namespace Domain.DataModel
 {
     public class BaseEntity
     {
