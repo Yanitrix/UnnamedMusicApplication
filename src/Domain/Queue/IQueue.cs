@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UnnamedMusicApplication.DataModel.Queue
+namespace Domain.DataModel.Queue
 {
     public interface IQueue<T>
     {

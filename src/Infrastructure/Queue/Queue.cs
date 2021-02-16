@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Domain.DataModel;
+using Domain.DataModel.Queue;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace UnnamedMusicApplication.DataModel.Queue
+namespace Infrastructure.Queue
 {
     public class Queue : IQueue<Song>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UnnamedMusicApplication.Tags
+namespace Domain.Tags
 {
     public interface IFileTagFormat
     {

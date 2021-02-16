@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UnnamedMusicApplication.DataModel
+namespace Domain.DataModel
 {
     public class Artist : BaseEntity
     {
