@@ -1,5 +1,4 @@
-﻿
-namespace Domain.Queue
+﻿namespace Domain.Queue
 {
     /// <summary>
     /// Abstraction used to return a sequence of numbers (song indexes in a song queue) between given numbers.
@@ -29,20 +28,7 @@ namespace Domain.Queue
         /// If the next index cannot be returned (e.g. the end was reached), <c>NoIndexAvailableException</c> is thrown.
         /// </summary>
         /// <returns>The index of the next song</returns>
-        /// <exception cref="Domain.Exceptions.NoIndexAvailableException">Thrown when there is not next index available.</exception>
+        /// <exception cref="Domain.Exceptions.NoItemAvailableException">Thrown when there is not next index available.</exception>
         public abstract int Next();
-
-        /// <summary>
-        /// Checks if there is something before current index. If it's the beginning, returns false.
-        /// </summary>
-        public abstract bool HasPrevious();
-
-        /// <summary>
-        /// This method should return the index of the song that was played previously.
-        /// If there is no previous index (e.g. it is the beginning), <c>NoIndexAvailableException</c> is thrown.
-        /// </summary>
-        /// <returns>The index of the previous song</returns>
-        /// <exception cref="Domain.Exceptions.NoIndexAvailableException">Thrown when there is not previous index available.</exception>
-        public abstract int Previous();
     }
 }

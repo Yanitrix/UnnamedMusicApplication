@@ -32,9 +32,8 @@ namespace Domain.Queue
         public override int Next()
         {
             //the next index is gonna be within (currentIndex, LastIndex], excluding already played
-
             if (!HasNext())
-                throw new NoIndexAvailableException();
+                throw new NoItemAvailableException("No next index available. The end was reached.");
 
             //if currentIndex is the last, everything's allright and the next random should be returned. 
             if (alreadyPlayed[^1] == currentIndex)
@@ -42,6 +41,7 @@ namespace Domain.Queue
                 currentIndex = NextRandom();
             }
             //if currentIndex was already played (but is not the last element), the next index should be the next int in alreadyPlayed after currentIndex
+            //this case is not possible because you cannot move backwards
             if (alreadyPlayed.Contains(currentIndex))
             {
                 var no = alreadyPlayed.IndexOf(currentIndex);
@@ -50,25 +50,6 @@ namespace Domain.Queue
 
             alreadyPlayed.Add(currentIndex);
             possibleIndices.Remove(currentIndex);
-            return currentIndex;
-        }
-
-        public override bool HasPrevious()
-        {
-            //possible only when the first index of alreadyPlayed is not the currentIndex
-            //no need to check if alreadyPlayed.Contains(currentIndex) because that is not possible
-            ///may be -1 <see cref="currentIndex"/>
-            return currentIndex != -1 && alreadyPlayed[0] != currentIndex;
-        }
-
-        public override int Previous()
-        {
-            if (!HasPrevious())
-                throw new NoIndexAvailableException();
-
-            //current index was already played, so it should return the index previous to current one.
-            var no = alreadyPlayed.IndexOf(currentIndex);
-            currentIndex = alreadyPlayed[no - 1];
             return currentIndex;
         }
 

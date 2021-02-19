@@ -21,20 +21,8 @@ namespace Domain.Queue
         public override int Next()
         {
             if (!HasNext())
-                throw new NoIndexAvailableException();
+                throw new NoItemAvailableException("No next index available. The end was reached.");
             return ++currentIndex;
-        }
-
-        public override bool HasPrevious()
-        {
-            return currentIndex > BeginIndex;
-        }
-
-        public override int Previous()
-        {
-            if (!HasPrevious())
-                throw new NoIndexAvailableException();
-            return --currentIndex;
         }
     }
 }
