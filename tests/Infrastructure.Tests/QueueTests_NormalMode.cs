@@ -7,12 +7,11 @@ using Xunit;
 
 namespace Infrastructure.Tests
 {
-    public class QueueTests
+    public class QueueTests_NormalMode
     {
-        public ISongQueue Queue = new Queue();
         private static List<Song> first, second, third;
 
-        public QueueTests()
+        public QueueTests_NormalMode()
         {
             initializeLists();
         }
@@ -20,8 +19,8 @@ namespace Infrastructure.Tests
         [Fact]
         public void ToArray_ShouldEqual()
         {
-            Queue.Set(first);
-            Song[] actual = Queue.ToArray();
+            ISongQueue queue = new Queue(first);
+            Song[] actual = queue.ToArray();
             Song[] expected = first.ToArray();
 
             Assert.Equal(expected, actual);
@@ -30,14 +29,14 @@ namespace Infrastructure.Tests
         [Fact]
         public void Insert_InsertingAnElement_ShouldEqual()
         {
-            //preapre 
+            //arrange 
 
-            ISongQueue queue = new Queue();
             Song song = new Song
             {
                 ID = 30,
                 Name = "For Whom the Bell Tolls"
             };
+
             //list 3
             List<Song> list = new List<Song>
             {
@@ -69,10 +68,11 @@ namespace Infrastructure.Tests
                 }
             };
 
+            ISongQueue queue = new Queue(third);
+
 
 
             //act
-            queue.Set(third);
             _ = queue.Next; //doing it two times, because for the first time "next" takes the first of the queue
             _ = queue.Next;
             queue.Insert(song);
@@ -87,9 +87,8 @@ namespace Infrastructure.Tests
         [Fact]
         public void Insert_InsertRange_ShouldEqual()
         {
-            //preapre 
+            //arrange 
 
-            ISongQueue queue = new Queue();
             List<Song> toBeInserted = new List<Song>
             {
                 new Song
@@ -138,7 +137,7 @@ namespace Infrastructure.Tests
                 }
             };
 
-            queue.Set(second);
+            ISongQueue queue = new Queue(second);
 
             //act
 
@@ -159,10 +158,8 @@ namespace Infrastructure.Tests
         [Fact]
         public void Jump_RemoveAllToEndAndInsertRange_ShoudlEqual()
         {
-            ISongQueue queue = new Queue();
-            queue.Set(first);
+            ISongQueue queue = new Queue(first);
 
-            List<Song> toBeInserted = second;
             List<Song> toExpect = new List<Song>
             {
                 first[0],
@@ -189,8 +186,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Add_AddToEnd_ShouldEqual()
         {
-            ISongQueue queue = new Queue();
-            queue.Set(second);
+            ISongQueue queue = new Queue(second);
 
             Song song = new Song
             {
@@ -212,8 +208,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Clear_ShouldBeEmpty()
         {
-            ISongQueue queue = new Queue();
-            queue.Set(second);
+            ISongQueue queue = new Queue(second);
 
             queue.Clear();
 
@@ -223,8 +218,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Set_ShouldEqual()
         {
-            ISongQueue queue = new Queue();
-            queue.Insert(third);
+            ISongQueue queue = new Queue(third);
 
             queue.Set(first);
 
@@ -237,8 +231,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Current_ShouldReturnCurrentElement()
         {
-            ISongQueue queue = new Queue();
-            queue.Set(third);
+            ISongQueue queue = new Queue(third);
 
             Song expected1 = new Song
             {
@@ -260,17 +253,14 @@ namespace Infrastructure.Tests
 
             _ = queue.Next;
             _ = queue.Next;
-            _ = queue.Previous;
-            Song actual1 = queue.Current;
+            Song actual1 = queue.Previous;
 
             _ = queue.Next;
             _ = queue.Next;
-            _ = queue.Next;
-            Song actual2 = queue.Current;
+            Song actual2 = queue.Next;
 
             _ = queue.Previous;
-            _ = queue.Previous;
-            Song actual3 = queue.Current;
+            Song actual3 = queue.Previous;
 
             Assert.Equal(expected1, actual1);
             Assert.Equal(expected2, actual2);
@@ -280,8 +270,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Next_FewTimes_ShouldReturnNext()
         {
-            ISongQueue queue = new Queue();
-            queue.Set(second);
+            ISongQueue queue = new Queue(second);
 
             Song actual1 = queue.Next;
             Song expected1 = new Song
@@ -306,8 +295,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Previous_FewTimes_ShouldReturnPrevious()
         {
-            ISongQueue queue = new Queue();
-            queue.Set(first);
+            ISongQueue queue = new Queue(first);
 
             Song expected1 = new Song
             {
@@ -346,6 +334,9 @@ namespace Infrastructure.Tests
             Assert.Equal(expected3, actual3);
         }
 
+        //throw some exceptions with next, previous, hasnext, hasprevious
+        //push sequence to the limit
+        //or the beginnig
 
         private void initializeLists()
         {

@@ -1,4 +1,5 @@
 ﻿using Domain.Exceptions;
+using System;
 
 namespace Domain.Queue
 {
@@ -8,6 +9,9 @@ namespace Domain.Queue
 
         public override void Initialize(int begin, int last)
         {
+            if (begin >= last)
+                throw new ArgumentException("last must be greater than begin");
+
             this.BeginIndex = begin;
             this.LastIndex = last;
             currentIndex = begin;
