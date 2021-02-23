@@ -1,30 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Entities;
+using System.Collections.Generic;
 
-namespace Domain.DataModel.Queue
+namespace Domain.Queue
 {
     public interface ISongQueue : IEnumerable<Song>
     {
-        Song Current { get; }
-
         Song Next { get; }
 
         Song Previous { get; }
 
-
         /// <summary>
-        /// Inserts an element after <c>Current</c> and keeps the rest of the queue the same.
+        /// Inserts an element after current song and keeps the rest of the queue the same.
         /// </summary>
-        /// <param name="obj"></param>
-        void Insert(Song obj);
+        /// <param name="song"></param>
+        void Insert(Song song);
 
         /// <summary>
-        /// Inserts a collection of elements after <c>Current</c> and keeps the rest of the queue the same.
+        /// Inserts a collection of elements after current song and keeps the rest of the queue the same.
         /// </summary>
         /// <param name="songs"></param>
         void Insert(IEnumerable<Song> songs);
 
         /// <summary>
-        /// Clears everything after <c>Current</c> and inserts a collection of elements.
+        /// Clears everything after current song and inserts a collection of elements.
         /// </summary>
         /// <param name="songs"></param>
         void Replace(IEnumerable<Song> songs);
@@ -32,8 +30,8 @@ namespace Domain.DataModel.Queue
         /// <summary>
         /// Adds element to the end of the queue.
         /// </summary>
-        /// <param name="obj"></param>
-        void Add(Song obj);
+        /// <param name="song"></param>
+        void Add(Song song);
 
         /// <summary>
         /// Removes all elements from the queue.

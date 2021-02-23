@@ -1,5 +1,5 @@
-﻿using Domain.DataModel;
-using Domain.DataModel.Queue;
+﻿using Domain.Entities;
+using Domain.Queue;
 using Infrastructure.SongQueue;
 using System.Collections.Generic;
 using System.Linq;
@@ -260,17 +260,14 @@ namespace Infrastructure.Tests
 
             _ = queue.Next;
             _ = queue.Next;
-            _ = queue.Previous;
-            Song actual1 = queue.Current;
+            Song actual1 = queue.Previous;
 
             _ = queue.Next;
             _ = queue.Next;
-            _ = queue.Next;
-            Song actual2 = queue.Current;
+            Song actual2 = queue.Next;
 
             _ = queue.Previous;
-            _ = queue.Previous;
-            Song actual3 = queue.Current;
+            Song actual3 = queue.Previous;
 
             Assert.Equal(expected1, actual1);
             Assert.Equal(expected2, actual2);
