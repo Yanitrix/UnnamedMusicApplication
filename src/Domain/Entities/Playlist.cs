@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Domain.DataModel
+namespace Domain.Entities
 {
     public class Playlist : BaseEntity
     {

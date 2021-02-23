@@ -1,4 +1,4 @@
-﻿namespace Domain.DataModel
+﻿namespace Domain.Entities
 {
     public class BaseEntity
     {

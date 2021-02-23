@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.DataModel
+namespace Domain.Entities
 {
     public class Song : BaseEntity
     {
