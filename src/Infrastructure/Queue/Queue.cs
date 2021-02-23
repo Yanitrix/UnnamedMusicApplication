@@ -1,5 +1,5 @@
-﻿using Domain.DataModel;
-using Domain.DataModel.Queue;
+﻿using Domain.Entities;
+using Domain.Queue;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,22 +7,19 @@ namespace Infrastructure.SongQueue
 {
     public class Queue : ISongQueue
     {
-        /// <summary>
-        /// should be -1 and then the first song is gonna be "Next"
-        /// </summary>
 
+        // should be -1 and then the first song is gonna be "Next"
         //TODO: think what happens when there's no Previous or Next
         private int currentIndex = -1;
 
         private readonly List<Song> songs = new List<Song>();
 
-        public Song Current { get => songs[currentIndex]; }
         public Song Next
         {
             get
             {
                 currentIndex++;
-                return Current;
+                return songs[currentIndex];
             }
         }
         public Song Previous
@@ -30,29 +27,29 @@ namespace Infrastructure.SongQueue
             get
             {
                 currentIndex--;
-                return Current;
+                return songs[currentIndex];
             }
         }
 
-        public void Insert(Song obj)
+        public void Insert(Song song)
         {
-            songs.Insert(currentIndex + 1, obj);
+            songs.Insert(currentIndex + 1, song);
         }
 
-        public void Insert(IEnumerable<Song> objs)
+        public void Insert(IEnumerable<Song> songs)
         {
-            songs.InsertRange(currentIndex + 1, objs);
+            this.songs.InsertRange(currentIndex + 1, songs);
         }
 
-        public void Replace(IEnumerable<Song> objs)
+        public void Replace(IEnumerable<Song> songs)
         {
-            songs.RemoveRange(currentIndex + 1, songs.Count - currentIndex - 1);
-            songs.AddRange(objs);
+            this.songs.RemoveRange(currentIndex + 1, this.songs.Count - currentIndex - 1);
+            this.songs.AddRange(songs);
         }
 
-        public void Add(Song obj)
+        public void Add(Song song)
         {
-            songs.Add(obj);
+            songs.Add(song);
         }
 
         public void Clear()
@@ -61,10 +58,10 @@ namespace Infrastructure.SongQueue
             currentIndex = -1;
         }
 
-        public void Set(IEnumerable<Song> objs)
+        public void Set(IEnumerable<Song> songs)
         {
             Clear();
-            Insert(objs);
+            Insert(songs);
         }
 
         public IEnumerator<Song> GetEnumerator() => songs.GetEnumerator();
