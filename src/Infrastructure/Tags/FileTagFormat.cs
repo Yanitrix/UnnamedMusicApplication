@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Domain.Tags
+namespace Infrastructure.Tags
 {
     public class FileTagFormat
     {
