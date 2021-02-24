@@ -4,6 +4,8 @@ namespace Domain.Entities
 {
     public class Song : BaseEntity
     {
+        //combination of name and album unique
+
         public string Path { get; set; }
 
         //tag properties
