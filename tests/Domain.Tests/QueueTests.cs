@@ -1,20 +1,19 @@
 ﻿using Domain.Entities;
 using Domain.Queue;
-using Infrastructure.SongQueue;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Infrastructure.Tests
+namespace Domain.Tests
 {
     public class QueueTests
     {
-        public ISongQueue Queue = new Queue();
+        public ISongQueue Queue = new SongQueue();
         private static List<Song> first, second, third;
 
         public QueueTests()
         {
-            initializeLists();
+            InitializeLists();
         }
 
         [Fact]
@@ -32,7 +31,7 @@ namespace Infrastructure.Tests
         {
             //preapre 
 
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             Song song = new Song
             {
                 ID = 30,
@@ -89,7 +88,7 @@ namespace Infrastructure.Tests
         {
             //preapre 
 
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             List<Song> toBeInserted = new List<Song>
             {
                 new Song
@@ -159,7 +158,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Jump_RemoveAllToEndAndInsertRange_ShoudlEqual()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Set(first);
 
             List<Song> toBeInserted = second;
@@ -189,7 +188,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Add_AddToEnd_ShouldEqual()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Set(second);
 
             Song song = new Song
@@ -212,7 +211,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Clear_ShouldBeEmpty()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Set(second);
 
             queue.Clear();
@@ -223,7 +222,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Set_ShouldEqual()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Insert(third);
 
             queue.Set(first);
@@ -237,7 +236,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Current_ShouldReturnCurrentElement()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Set(third);
 
             Song expected1 = new Song
@@ -277,7 +276,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Next_FewTimes_ShouldReturnNext()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Set(second);
 
             Song actual1 = queue.Next;
@@ -303,7 +302,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void Previous_FewTimes_ShouldReturnPrevious()
         {
-            ISongQueue queue = new Queue();
+            ISongQueue queue = new SongQueue();
             queue.Set(first);
 
             Song expected1 = new Song
@@ -344,7 +343,7 @@ namespace Infrastructure.Tests
         }
 
 
-        private void initializeLists()
+        private void InitializeLists()
         {
             first = new List<Song>
             {
