@@ -2,9 +2,9 @@
 namespace Infrastructure.Services
 {
     //find some serious names for those, right now cannot think about it
-    public enum ComparisonMode
+    public enum DiscoveryMode
     {
-        DIRECTORY_HIERARCHY,
+        FOLDER_HIERARCHY,
         UNIQUE_NAMES
     }
 }
