@@ -1,11 +1,10 @@
 ﻿using Domain.Entities;
-using Domain.Queue;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Infrastructure.SongQueue
+namespace Domain.Queue
 {
-    public class Queue : ISongQueue
+    public class SongQueue : ISongQueue
     {
 
         // should be -1 and then the first song is gonna be "Next"
