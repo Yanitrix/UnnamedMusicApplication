@@ -12,6 +12,6 @@ namespace Domain.DataAccess
         //and here full crud can be performed
         public void Update(Playlist entity);
 
-        public void Delete(Playlist entity);
+        public void Delete(string name);
     }
 }
