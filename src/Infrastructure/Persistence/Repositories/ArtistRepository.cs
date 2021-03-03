@@ -7,7 +7,7 @@ namespace Infrastructure.Persistence.Repositories
 {
     public class ArtistRepository : BaseRepository<Artist>, IArtistRepository
     {
-        public ArtistRepository(LiteDatabase connection, ISchemaProvider schemaProvider) : base(connection, schemaProvider) { }
+        public ArtistRepository(LiteDatabase connection) : base(connection) { }
 
         //should i really return all entites? or maybe just names? if it's even possible
         public IEnumerable<Artist> All()

@@ -7,7 +7,7 @@ namespace Infrastructure.Persistence.Repositories
 {
     public class AlbumRepository : BaseRepository<Album>, IAlbumRepository
     {
-        public AlbumRepository(LiteDatabase connection, ISchemaProvider schemaProvider) : base(connection, schemaProvider)
+        public AlbumRepository(LiteDatabase connection) : base(connection)
         {
         }
 

@@ -18,7 +18,7 @@ namespace Domain.DataAccess
         public void Create();
 
         /// <summary>
-        /// Removes database. If db does not exist, no action is taken.
+        /// Removes all data from the database.
         /// </summary>
         public void Delete();
     }

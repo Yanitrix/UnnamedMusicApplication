@@ -8,10 +8,9 @@ namespace Infrastructure.Persistence.Repositories
     public abstract class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly LiteDatabase connection;
-        protected readonly ISchemaProvider schemaProvider;
         protected readonly ILiteCollection<T> repo;
 
-        protected BaseRepository(LiteDatabase connection, ISchemaProvider schemaProvider)
+        protected BaseRepository(LiteDatabase connection)
         {
             this.connection = connection;
             this.repo = connection.GetCollection<T>();

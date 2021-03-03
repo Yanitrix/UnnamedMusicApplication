@@ -9,29 +9,29 @@ namespace Infrastructure.Persistence
 {
     public class Database : IDatabase
     {
+        private const string DATABASE_NAME = "songs";
+
         private readonly LiteDatabase connection;
-        private readonly ISchemaProvider provider;
+        private bool disposed;
 
         private IArtistRepository artists;
         private IAlbumRepository albums;
         private ISongRepository songs;
         private IPlaylistRepository playlists;
 
-        public Database(ISchemaProvider provider)
+        public Database()
         {
             this.connection = new LiteDatabase(GetDatabaseFilePath());
-            this.provider = provider;
-
             Configure();
         }
 
-        public IArtistRepository Artists => artists ??= new ArtistRepository(connection, provider);
+        public IArtistRepository Artists => artists ??= new ArtistRepository(connection);
 
-        public IAlbumRepository Albums => albums ??= new AlbumRepository(connection, provider);
+        public IAlbumRepository Albums => albums ??= new AlbumRepository(connection);
 
-        public ISongRepository Songs => songs ??= new SongRepository(connection, provider);
+        public ISongRepository Songs => songs ??= new SongRepository(connection);
 
-        public IPlaylistRepository Playlists => playlists ??= new PlaylistRepository(connection, provider);
+        public IPlaylistRepository Playlists => playlists ??= new PlaylistRepository(connection);
 
         public void Create()
         {
@@ -47,12 +47,31 @@ namespace Infrastructure.Persistence
             var filePath = GetDatabaseFilePath();
             if (File.Exists(filePath))
             {
-                connection.DropCollection(provider.ArtistCollectionName);
-                connection.DropCollection(provider.AlbumCollectionName);
-                connection.DropCollection(provider.SongCollectionName);
-                connection.DropCollection(provider.PlaylistCollectionName);
+                if (!disposed)
+                {
+                    connection.DropCollection(typeof(Artist).Name);
+                    connection.DropCollection(typeof(Album).Name);
+                    connection.DropCollection(typeof(Song).Name);
+                    connection.DropCollection(typeof(Playlist).Name);
+                    Dispose();
+                }
                 File.Delete(filePath);
             }
+        }
+
+        public void Dispose()
+        {
+            if (!disposed)
+            {
+                connection.Dispose();
+                GC.SuppressFinalize(this);
+            }
+            disposed = true;
+        }
+
+        private string GetDatabaseFilePath()
+        {
+            return $"{Directory.GetCurrentDirectory()}\\{DATABASE_NAME}.db";
         }
 
         private void Configure()
@@ -70,17 +89,6 @@ namespace Infrastructure.Persistence
             mapper.Entity<Playlist>()
                 .DbRef(p => p.Songs)
                 .Id(p => p.Name);
-        }
-
-        protected string GetDatabaseFilePath()
-        {
-            return $"{Directory.GetCurrentDirectory()}\\{provider.DatabaseName}.sqlite";
-        }
-
-        public void Dispose()
-        {
-            connection.Dispose();
-            GC.SuppressFinalize(this);
         }
     }
 }

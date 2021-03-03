@@ -7,7 +7,7 @@ namespace Infrastructure.Persistence.Repositories
 {
     public class PlaylistRepository : BaseRepository<Playlist>, IPlaylistRepository
     {
-        public PlaylistRepository(LiteDatabase connection, ISchemaProvider schemaProvider) : base(connection, schemaProvider) { }
+        public PlaylistRepository(LiteDatabase connection) : base(connection) { }
 
         public IEnumerable<Playlist> All()
         {

@@ -6,6 +6,6 @@ namespace Infrastructure.Persistence.Repositories
 {
     public class SongRepository : BaseRepository<Song>, ISongRepository
     {
-        public SongRepository(LiteDatabase connection, ISchemaProvider schemaProvider) : base(connection, schemaProvider) { }
+        public SongRepository(LiteDatabase connection) : base(connection) { }
     }
 }
