@@ -6,6 +6,8 @@ namespace Domain.DataAccess.Abstract
 {
     public interface IRepository<T> where T : BaseEntity
     {
+        public IEnumerable<T> All();
+
         //querying by substring?
         //yup, should be queried by substring but limited in some way
         public IEnumerable<T> GetByName(String name);
@@ -13,6 +15,8 @@ namespace Domain.DataAccess.Abstract
         public T GetById(long id);
 
         public void Add(T entity);
+
+        public void Add(IEnumerable<T> entities);
 
         //TODO update/delete entities
         //is deleting/updating really possible? I think only when rediscovering of files happens but then only adding should be used (we don't know what to delete/update since everything has changed)
