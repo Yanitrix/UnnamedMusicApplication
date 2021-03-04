@@ -4,6 +4,6 @@ namespace Domain.Entities
 {
     public class Playlist : BaseEntity
     {
-        public virtual IList<Song> Songs { get; } = new List<Song>();
+        public virtual IList<Song> Songs { get; set; } = new List<Song>();
     }
 }
