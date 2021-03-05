@@ -8,6 +8,6 @@ namespace Domain.Entities
         //combination of artist and name should be unique, but how to do that?
 
         public DateTime DateReleased { get; set; }
-        public IList<Artist> Artists { get; } = new List<Artist>();
+        public IList<Artist> Artists { get; set; } = new List<Artist>();
     }
 }
