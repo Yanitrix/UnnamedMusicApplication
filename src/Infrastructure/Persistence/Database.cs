@@ -69,16 +69,16 @@ namespace Infrastructure.Persistence
             mapper
                 .Entity<Artist>()
                 .DbRef(a => a.Albums)
-                .Id(a => a.ID);
+                .Id(a => a.Id);
 
             mapper
                 .Entity<Album>()
                 .DbRef(a => a.Songs)
-                .Id(a => a.ID);
+                .Id(a => a.Id);
 
             mapper
                 .Entity<Song>()
-                .Id(s => s.ID);
+                .Id(s => s.Id);
 
             mapper
                 .Entity<Playlist>()

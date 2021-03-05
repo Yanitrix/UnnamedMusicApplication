@@ -34,7 +34,7 @@ namespace Domain.Tests
             ISongQueue queue = new SongQueue();
             Song song = new Song
             {
-                ID = 30,
+                Id = 30,
                 Name = "For Whom the Bell Tolls"
             };
             //list 3
@@ -42,28 +42,28 @@ namespace Domain.Tests
             {
                 new Song
                 {
-                    ID = 11,
+                    Id = 11,
                     Name = "Kitty Later"
                 },
                 new Song
                 {
-                    ID = 12,
+                    Id = 12,
                     Name = "Ashtray Heart"
                 },
                 song,
                 new Song
                 {
-                    ID = 13,
+                    Id = 13,
                     Name = "Battle for the Sun"
                 },
                 new Song
                 {
-                    ID = 14,
+                    Id = 14,
                     Name = "For What It's worth"
                 },
                 new Song
                 {
-                    ID = 15,
+                    Id = 15,
                     Name = "Devil in the Details"
                 }
             };
@@ -93,12 +93,12 @@ namespace Domain.Tests
             {
                 new Song
                 {
-                    ID = 31,
+                    Id = 31,
                     Name = "Getting Even"
                 },
                 new Song
                 {
-                    ID = 32,
+                    Id = 32,
                     Name = "Rituals"
                 }
             };
@@ -108,17 +108,17 @@ namespace Domain.Tests
 
                 new Song
                 {
-                    ID = 6,
+                    Id = 6,
                     Name = "Hold on to Me"
                 },
                 new Song
                 {
-                    ID = 7,
+                    Id = 7,
                     Name = "Rob the Bank"
                 },
                 new Song
                 {
-                    ID = 8,
+                    Id = 8,
                     Name = "A Million Little Places"
                 },
 
@@ -127,12 +127,12 @@ namespace Domain.Tests
 
                 new Song
                 {
-                    ID = 9,
+                    Id = 9,
                     Name = "Exit Wounds"
                 },
                 new Song
                 {
-                    ID = 10,
+                    Id = 10,
                     Name = "Purify"
                 }
             };
@@ -193,7 +193,7 @@ namespace Domain.Tests
 
             Song song = new Song
             {
-                ID = 11,
+                Id = 11,
                 Name = "Kitty Later"
             };
 
@@ -241,19 +241,19 @@ namespace Domain.Tests
 
             Song expected1 = new Song
             {
-                ID = 11,
+                Id = 11,
                 Name = "Kitty Later"
             };
 
             Song expected2 = new Song
             {
-                ID = 14,
+                Id = 14,
                 Name = "For What It's worth"
             };
 
             Song expected3 = new Song
             {
-                ID = 12,
+                Id = 12,
                 Name = "Ashtray Heart"
             };
 
@@ -282,14 +282,14 @@ namespace Domain.Tests
             Song actual1 = queue.Next;
             Song expected1 = new Song
             {
-                ID = 6,
+                Id = 6,
                 Name = "Hold on to Me"
             };
 
             Song actual2 = queue.Next;
             Song expected2 = new Song
             {
-                ID = 7,
+                Id = 7,
                 Name = "Rob the Bank"
             };
 
@@ -307,19 +307,19 @@ namespace Domain.Tests
 
             Song expected1 = new Song
             {
-                ID = 1,
+                Id = 1,
                 Name = "Sweet Home Alabama"
             };
 
             Song expected2 = new Song
             {
-                ID = 3,
+                Id = 3,
                 Name = "Loud Like Love"
             };
 
             Song expected3 = new Song
             {
-                ID = 2,
+                Id = 2,
                 Name = "Processed Beats"
             };
 
@@ -349,27 +349,27 @@ namespace Domain.Tests
             {
                 new Song
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "Sweet Home Alabama"
                 },
                 new Song
                 {
-                    ID = 2,
+                    Id = 2,
                     Name = "Processed Beats"
                 },
                 new Song
                 {
-                    ID = 3,
+                    Id = 3,
                     Name = "Loud Like Love"
                 },
                 new Song
                 {
-                    ID = 4,
+                    Id = 4,
                     Name = "Scene of the Crime"
                 },
                 new Song
                 {
-                    ID = 5,
+                    Id = 5,
                     Name = "Too Many Friends"
                 }
             };
@@ -378,27 +378,27 @@ namespace Domain.Tests
             {
                 new Song
                 {
-                    ID = 6,
+                    Id = 6,
                     Name = "Hold on to Me"
                 },
                 new Song
                 {
-                    ID = 7,
+                    Id = 7,
                     Name = "Rob the Bank"
                 },
                 new Song
                 {
-                    ID = 8,
+                    Id = 8,
                     Name = "A Million Little Places"
                 },
                 new Song
                 {
-                    ID = 9,
+                    Id = 9,
                     Name = "Exit Wounds"
                 },
                 new Song
                 {
-                    ID = 10,
+                    Id = 10,
                     Name = "Purify"
                 }
             };
@@ -407,27 +407,27 @@ namespace Domain.Tests
             {
                 new Song
                 {
-                    ID = 11,
+                    Id = 11,
                     Name = "Kitty Later"
                 },
                 new Song
                 {
-                    ID = 12,
+                    Id = 12,
                     Name = "Ashtray Heart"
                 },
                 new Song
                 {
-                    ID = 13,
+                    Id = 13,
                     Name = "Battle for the Sun"
                 },
                 new Song
                 {
-                    ID = 14,
+                    Id = 14,
                     Name = "For What It's worth"
                 },
                 new Song
                 {
-                    ID = 15,
+                    Id = 15,
                     Name = "Devil in the Details"
                 }
 

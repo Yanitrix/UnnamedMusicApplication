@@ -94,7 +94,7 @@ namespace Infrastructure.Tests.Persistence
                     {
                         new()
                         {
-                            ID = 2,
+                            Id = 2,
                             Name = "repeated song",
                             Path = "root/repeated_song"
                         },

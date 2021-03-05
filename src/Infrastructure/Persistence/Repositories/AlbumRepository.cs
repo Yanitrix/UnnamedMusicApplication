@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public override void Add(Album entity)
         {
-            var songs = entity.Songs.Where(s => s.ID == default);
+            var songs = entity.Songs.Where(s => s.Id == default);
             if (songs.Any())
                 connection.GetCollection<Song>().InsertBulk(songs);
             repo.Insert(entity);
@@ -23,7 +23,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public override void Add(IEnumerable<Album> entities)
         {
-            var songs = entities.SelectMany(a => a.Songs).Where(s => s.ID == default);
+            var songs = entities.SelectMany(a => a.Songs).Where(s => s.Id == default);
             if (songs.Any())
                 connection.GetCollection<Song>().InsertBulk(songs);
             repo.InsertBulk(entities);

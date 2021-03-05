@@ -160,7 +160,7 @@ namespace Infrastructure.Tests.Persistence
             };
 
             database.GetCollection<Song>().InsertBulk(songs);
-            var id = songs[2].ID;
+            var id = songs[2].Id;
 
             Assert.NotEqual(default(long), id);
             var song = repo.GetById(id);
