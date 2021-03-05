@@ -4,6 +4,7 @@ using Infrastructure.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NuGet.Frameworks;
 using Xunit;
 
 namespace Infrastructure.Tests.Persistence
@@ -19,7 +20,7 @@ namespace Infrastructure.Tests.Persistence
 
         private Album[] TestData()
         {
-            var a1songs = new Song[]
+            var a1Songs = new Song[]
             {
                 new()
                 {
@@ -46,7 +47,7 @@ namespace Infrastructure.Tests.Persistence
                 },
             };
 
-            var a2songs = new Song[]
+            var a2Songs = new Song[]
             {
                 new()
                 {
@@ -69,23 +70,64 @@ namespace Infrastructure.Tests.Persistence
             {
                 Name = "first album",
                 DateReleased = new(1990, 01, 01),
+                Songs = a1Songs.ToList()
             };
 
             var a2 = new Album
             {
                 Name = "second album",
-                DateReleased = new(1980, 12, 12)
+                DateReleased = new(1980, 12, 12),
+                Songs = a2Songs.ToList()
             };
 
-            foreach (var i in a1songs)
-                a1.Songs.Add(i);
-
-            foreach (var i in a2songs)
-                a2.Songs.Add(i);
-
-            return new Album[] { a1, a2 };
+            return new []{ a1, a2 };
         }
 
+        private Album[] AlbumsWithRepetitions()
+        {
+            return new Album[]
+            {
+                new()
+                {
+                    Name = "name",
+                    Songs = new List<Song>
+                    {
+                        new()
+                        {
+                            Id = 2,
+                            Name = "repeated song",
+                            Path = "root/repeated_song"
+                        },
+                        
+                        new()
+                        {
+                            Name = "not repeated song",
+                            Path = "root/not_repeated_song"
+                        }
+                    }
+                },
+                
+                new()
+                {
+                    Name = "name1",
+                    Songs = new List<Song>
+                    {
+                        new()
+                        {
+                            Name = "song",
+                            Path = "root/song"
+                        },
+                        
+                        new()
+                        {
+                            Name = "song1",
+                            Path = "root/song1"
+                        }
+                    }
+                }
+            };
+        }
+        
         private void InsertData()
         {
             var albums = TestData();
@@ -129,6 +171,42 @@ namespace Infrastructure.Tests.Persistence
 
             Assert.Single(album);
             Assert.Equal(3, album.First().Songs.Count);
+        }
+
+        [Fact]
+        public void CreateUniqueIndex_TryInsertDuplicate_SeeWhatHappens()
+        {
+            var albums = database.GetCollection<Album>();
+            //it doesn't do anything lol, why does it even exist
+            albums.EnsureIndex(x => x.Name, true);
+
+            var album1 = new Album
+            {
+                Name = "album",
+            };
+            var album2 = new Album
+            {
+                Name = "album"
+            };
+
+            albums.Insert(album1);
+            albums.Insert(album2);
+
+            var all = albums.FindAll();
+            
+            Assert.Equal(2, all.Count());
+        }
+
+        [Fact]
+        public void AddAlbum_ASongAlreadyExists_ShouldNotBeAdded()
+        {
+            var albums = AlbumsWithRepetitions();
+            
+            repo.Add(albums);
+
+            var songs = database.GetCollection<Song>().FindAll();
+            
+            Assert.Equal(3, songs.Count());
         }
     }
 }

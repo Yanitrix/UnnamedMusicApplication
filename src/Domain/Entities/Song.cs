@@ -14,13 +14,9 @@ namespace Domain.Entities
         public TimeSpan Duration { get; set; }
         public string Comments { get; set; }
 
-        public long AlbumID { get; set; }
+        public long AlbumId { get; set; }
         public Album Album { get; set; }
         
-        public long ArtistID { get; set; }
-        public Artist Artist { get; set; }
-
-
         /// <summary>
         /// now only for unit testing
         /// </summary>
@@ -33,7 +29,7 @@ namespace Domain.Entities
             Song that = obj as Song;
             if (that == null) return false;
 
-            return this.Name.Equals(that.Name) && this.ID == that.ID;
+            return this.Name.Equals(that.Name) && this.Id == that.Id;
         }
 
         public override int GetHashCode()
