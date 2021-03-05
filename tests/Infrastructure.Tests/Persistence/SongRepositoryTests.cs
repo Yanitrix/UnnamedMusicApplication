@@ -2,10 +2,7 @@
 using Domain.Entities;
 using Infrastructure.Persistence.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Infrastructure.Tests.Persistence
@@ -17,8 +14,7 @@ namespace Infrastructure.Tests.Persistence
 
         private void InitData()
         {
-            Song[] songs = new Song[]
-            {
+            Song[] songs = {
                 new()
                 {
                     Name = "stick",
@@ -85,8 +81,7 @@ namespace Infrastructure.Tests.Persistence
         [Fact]
         public void AddSongs_SongExists()
         {
-            Song[] songs = new Song[]
-            {
+            Song[] songs = {
                 new()
                 {
                     Name = "name",
@@ -212,6 +207,24 @@ namespace Infrastructure.Tests.Persistence
             var found = repo.GetByName(name);
 
             Assert.Empty(found);
+        }
+
+        [Fact]
+        public void AddSong_DateTimeAndDurationAreWrittenProperly()
+        {
+            var song = new Song
+            {
+                Name = "name",
+                Path = "root/name",
+                Duration = TimeSpan.FromSeconds(120),
+                DateReleased = new(2001, 01, 01)
+            };
+            
+            repo.Add(song);
+            var actual = repo.GetById(song.Id);
+            
+            Assert.Equal(actual.DateReleased, new DateTime(2001, 01, 01));
+            Assert.Equal(actual.Duration, new TimeSpan(0, 0, 120));
         }
 
 
