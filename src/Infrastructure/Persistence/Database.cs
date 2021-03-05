@@ -35,27 +35,15 @@ namespace Infrastructure.Persistence
 
         public void Create()
         {
-            var filePath = GetDatabaseFilePath();
-            if (!File.Exists(filePath))
-            {
-                File.Create(filePath);
-            }
         }
 
         public void Delete()
         {
-            var filePath = GetDatabaseFilePath();
-            if (File.Exists(filePath))
+            if (!disposed)
             {
-                if (!disposed)
-                {
-                    connection.DropCollection(typeof(Artist).Name);
-                    connection.DropCollection(typeof(Album).Name);
-                    connection.DropCollection(typeof(Song).Name);
-                    connection.DropCollection(typeof(Playlist).Name);
-                    Dispose();
-                }
-                File.Delete(filePath);
+                connection.DropCollection(typeof(Artist).Name);
+                connection.DropCollection(typeof(Album).Name);
+                connection.DropCollection(typeof(Song).Name);
             }
         }
 
@@ -78,15 +66,22 @@ namespace Infrastructure.Persistence
         {
             var mapper = BsonMapper.Global;
 
-            mapper.Entity<Artist>()
+            mapper
+                .Entity<Artist>()
                 .DbRef(a => a.Albums)
                 .Id(a => a.ID);
 
-            mapper.Entity<Album>()
+            mapper
+                .Entity<Album>()
                 .DbRef(a => a.Songs)
                 .Id(a => a.ID);
 
-            mapper.Entity<Playlist>()
+            mapper
+                .Entity<Song>()
+                .Id(s => s.ID);
+
+            mapper
+                .Entity<Playlist>()
                 .DbRef(p => p.Songs)
                 .Id(p => p.Name);
         }

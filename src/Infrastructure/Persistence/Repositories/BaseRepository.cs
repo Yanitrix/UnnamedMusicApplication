@@ -1,6 +1,7 @@
 ﻿using Domain.DataAccess.Abstract;
 using Domain.Entities;
 using LiteDB;
+using System;
 using System.Collections.Generic;
 
 namespace Infrastructure.Persistence.Repositories
@@ -22,6 +23,16 @@ namespace Infrastructure.Persistence.Repositories
             repo.Insert(entity);
         }
 
+        public virtual void Add(IEnumerable<T> entities)
+        {
+            repo.InsertBulk(entities);
+        }
+
+        public virtual IEnumerable<T> All()
+        {
+            return repo.FindAll();
+        }
+
         public virtual T GetById(long id)
         {
             return repo.FindById(id);
@@ -29,7 +40,9 @@ namespace Infrastructure.Persistence.Repositories
 
         public virtual IEnumerable<T> GetByName(string name)
         {
-            return repo.Find(x => x.Name.Contains(name));
+            if (string.IsNullOrWhiteSpace(name))
+                return Array.Empty<T>();
+            return repo.Find(Query.Contains("Name", name));
         }
     }
 }
