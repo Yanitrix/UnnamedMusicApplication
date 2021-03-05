@@ -9,7 +9,7 @@ namespace Infrastructure.Persistence.Repositories
     {
         public PlaylistRepository(LiteDatabase connection) : base(connection) { }
 
-        public IEnumerable<Playlist> All()
+        public override IEnumerable<Playlist> All()
         {
             return repo
                 .Include(BsonExpression.Create("$.Songs[*]"))
