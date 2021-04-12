@@ -1,32 +1,36 @@
-﻿using Domain.Entities;
+﻿using System;
+using Domain.Entities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Queue
 {
     public class SongQueue : ISongQueue
     {
-
-        // should be -1 and then the first song is gonna be "Next"
-        //TODO: think what happens when there's no Previous or Next
         private int currentIndex = -1;
+        private readonly List<Song> songs = new();
+        private readonly List<int> shuffledIndices = new();
+        private bool shuffle;
 
-        private readonly List<Song> songs = new List<Song>();
+        public Song Next => HasNext ? songs[NextIndex()] : null;
 
-        public Song Next
+        public Song Previous => HasPrevious ? songs[PreviousIndex()] : null;
+
+        public bool HasNext => shuffle ? currentIndex != shuffledIndices[^1] : currentIndex != songs.Count - 1;
+
+        public bool HasPrevious => shuffle ? currentIndex != shuffledIndices[0] : currentIndex != 0;
+
+        public bool Shuffle
         {
-            get
+            get => shuffle;
+            set
             {
-                currentIndex++;
-                return songs[currentIndex];
-            }
-        }
-        public Song Previous
-        {
-            get
-            {
-                currentIndex--;
-                return songs[currentIndex];
+                if (value && !shuffle)
+                    StartShuffle();
+                else
+                    EndShuffle();
+                shuffle = value;
             }
         }
 
@@ -63,8 +67,53 @@ namespace Domain.Queue
             Insert(songs);
         }
 
+        public void Reset()
+        {
+            currentIndex = -1;
+            if (!shuffle) return;
+            EndShuffle();
+            StartShuffle();
+        }
+
         public IEnumerator<Song> GetEnumerator() => songs.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        private void StartShuffle()
+        {
+            var range = Enumerable.Range(currentIndex + 1, songs.Count - currentIndex - 1);
+            var rng = new Random();
+            shuffledIndices.Add(currentIndex);
+            shuffledIndices.AddRange(range.OrderBy(_ => rng.Next()).ToList());
+        }
+
+        private void EndShuffle()
+        {
+            shuffledIndices.Clear();
+        }
+
+        private int NextIndex()
+        {
+            if (shuffle)
+            {
+                var idx = shuffledIndices.IndexOf(currentIndex);
+                currentIndex = shuffledIndices[idx + 1];
+                return currentIndex;
+            }
+
+            return ++currentIndex;
+        }
+
+        private int PreviousIndex()
+        {
+            if (shuffle)
+            {
+                var idx = shuffledIndices.IndexOf(currentIndex);
+                currentIndex = shuffledIndices[idx - 1];
+                return currentIndex;
+            }
+
+            return --currentIndex;
+        }
     }
 }
