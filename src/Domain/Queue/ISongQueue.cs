@@ -9,6 +9,12 @@ namespace Domain.Queue
 
         Song Previous { get; }
 
+        public bool HasNext { get; }
+        
+        public bool HasPrevious { get; }
+        
+        public bool Shuffle { get; set; }
+        
         /// <summary>
         /// Inserts an element after current song and keeps the rest of the queue the same.
         /// </summary>
@@ -43,5 +49,10 @@ namespace Domain.Queue
         /// </summary>
         /// <param name="songs"></param>
         void Set(IEnumerable<Song> songs);
+
+        /// <summary>
+        /// Sets the queue to a starting position. Keeps Shuffle value
+        /// </summary>
+        void Reset();
     }
 }
