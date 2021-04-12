@@ -8,7 +8,6 @@ namespace Domain.Tests
 {
     public class QueueTests
     {
-        public ISongQueue Queue = new SongQueue();
         private static List<Song> first, second, third;
 
         public QueueTests()
@@ -19,8 +18,9 @@ namespace Domain.Tests
         [Fact]
         public void ToArray_ShouldEqual()
         {
-            Queue.Set(first);
-            Song[] actual = Queue.ToArray();
+            ISongQueue queue = new SongQueue();
+            queue.Set(first);
+            Song[] actual = queue.ToArray();
             Song[] expected = first.ToArray();
 
             Assert.Equal(expected, actual);
@@ -29,7 +29,7 @@ namespace Domain.Tests
         [Fact]
         public void Insert_InsertingAnElement_ShouldEqual()
         {
-            //preapre 
+            //prepare 
 
             ISongQueue queue = new SongQueue();
             Song song = new Song
@@ -86,7 +86,7 @@ namespace Domain.Tests
         [Fact]
         public void Insert_InsertRange_ShouldEqual()
         {
-            //preapre 
+            //prepare 
 
             ISongQueue queue = new SongQueue();
             List<Song> toBeInserted = new List<Song>
@@ -156,12 +156,11 @@ namespace Domain.Tests
         }
 
         [Fact]
-        public void Jump_RemoveAllToEndAndInsertRange_ShoudlEqual()
+        public void Jump_RemoveAllToEndAndInsertRange_ShouldEqual()
         {
             ISongQueue queue = new SongQueue();
             queue.Set(first);
 
-            List<Song> toBeInserted = second;
             List<Song> toExpect = new List<Song>
             {
                 first[0],
