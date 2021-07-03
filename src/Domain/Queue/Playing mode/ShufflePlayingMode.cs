@@ -11,27 +11,14 @@ namespace Domain.Queue
         private List<int> alreadyPlayed;
         private List<int> possibleIndices;
         //may be -1, it indicates that the playing mode was used right from start of the playlist (that means that the random indices were in range [0, LastIndex])
-        private readonly Random rng = new Random();
+        private readonly Random rng = new();
 
-        public override void Initialize(int begin, int last)
+        protected ShufflePlayingMode(int count) : base(count)
         {
-            if (begin >= last)
-                throw new ArgumentException("last must be greater than begin");
-
-            this.alreadyPlayed = new();
-            this.BeginIndex = begin;
-            this.LastIndex = last;
         }
 
-        //override
-        public override int LastIndex
+        protected ShufflePlayingMode(int count, IList<int> ignored) : base(count, ignored)
         {
-            get => base.LastIndex;
-            set
-            {
-                base.LastIndex = value;
-                this.possibleIndices = Enumerable.Range(BeginIndex + 1, LastIndex - BeginIndex).Except(alreadyPlayed).ToList();
-            }
         }
 
         public override bool HasNext()

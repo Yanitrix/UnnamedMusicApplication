@@ -10,18 +10,12 @@ namespace Domain.Tests
     public class LinearPlayingModeTests
     {
         [Theory]
-        [InlineData(3, 20)]
-        [InlineData(4, 15)]
-        [InlineData(12, 27)]
-        [InlineData(3, 4)]
-        [InlineData(0, 1)]
-        [InlineData(-1, 3)]
-        public void Next_GetWholeSequence_ShouldBeLinear(int begin, int last)
+        [InlineData(20)]
+        //initialize and step the whole sequence, without changing anything
+        public void Next_GetWholeSequence_ShouldBeLinear(int count)
         {
-            var mode = new LinearPlayingMode();
-            mode.Initialize(begin, last);
+            var mode = new LinearPlayingMode(count);
 
-            int amount = last - begin;
             List<int> expected = Enumerable.Range(begin + 1, amount).ToList();
             List<int> actual = new();
             while (mode.HasNext())
@@ -31,10 +25,8 @@ namespace Domain.Tests
             Assert.Equal(expected, actual);
         }
 
-        //edge cases
         [Theory]
-        [InlineData(4, 3)]
-        [InlineData(0, -1)]
+        //check exceptions for wrong inputs
         public void Initialize_WrongInput_ShouldThrowException(int begin, int last)
         {
             var mode = new LinearPlayingMode();
@@ -48,6 +40,7 @@ namespace Domain.Tests
         }
 
         [Fact]
+        //step through the whole and check if has next
         public void HasNext_NextDoesNotExist_ReturnsFalse()
         {
             int begin = 3, last = 4;
@@ -61,6 +54,7 @@ namespace Domain.Tests
         }
 
         [Fact]
+        //step the whole and expect an exception
         public void Next_NextDoesNotExist_ThrowsException()
         {
             int begin = 3, last = 4;
@@ -75,6 +69,32 @@ namespace Domain.Tests
             }
 
             Assert.Throws<NoItemAvailableException>(throwable);
+        }
+
+        [Fact]
+        //initialize, then insert somewhere at different stages, walk through sequence
+        public void Insert_GetWholeSequence_ShouldBeLinear()
+        {
+
+        }
+
+        [Fact]
+        public void Insert_WrongInput_ShouldThrowException()
+        {
+
+        }
+
+        [Fact]
+        //initialize, remove somewhere at different stages, walk through sequence
+        public void Remove_GetWholeSequence_ShouldBeLinear()
+        {
+
+        }
+
+        [Fact]
+        public void Remove_WrongInput_ShouldThrowException()
+        {
+
         }
     }
 }
