@@ -33,6 +33,16 @@ namespace Infrastructure.Persistence
 
         public IPlaylistRepository Playlists => playlists ??= new PlaylistRepository(connection);
 
+        public bool BeginTransaction()
+        {
+            return connection.BeginTrans();
+        }
+
+        public bool CommitTransaction()
+        {
+            return connection.Commit();
+        }
+
         public void Create()
         {
         }

@@ -36,5 +36,6 @@ namespace Infrastructure.Tags
 
             return tags.ToImmutableDictionary();
         }
+
     }
 }

@@ -12,6 +12,10 @@ namespace Domain.DataAccess
 
         public IPlaylistRepository Playlists { get; }
 
+        public bool BeginTransaction();
+
+        public bool CommitTransaction();
+
         /// <summary>
         /// Creates database. If db exists, no action is taken.
         /// </summary>

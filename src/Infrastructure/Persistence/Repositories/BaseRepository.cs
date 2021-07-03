@@ -33,6 +33,11 @@ namespace Infrastructure.Persistence.Repositories
             return repo.FindAll();
         }
 
+        public int Count()
+        {
+            return repo.Count();
+        }
+
         public virtual T GetById(long id)
         {
             return repo.FindById(id);

@@ -11,6 +11,6 @@ namespace Infrastructure.Services
     /// </summary>
     public interface IDiscoveryService
     {
-        public DiscoveryReport Run(String[] rootDirectories, DiscoveryMode comparisonMode);
+        public DiscoveryReport Run(String[] rootDirectories);
     }
 }

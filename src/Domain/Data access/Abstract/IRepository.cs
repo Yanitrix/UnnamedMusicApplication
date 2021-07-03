@@ -8,6 +8,8 @@ namespace Domain.DataAccess.Abstract
     {
         public IEnumerable<T> All();
 
+        public int Count();
+
         //querying by substring?
         //yup, should be queried by substring but limited in some way
         public IEnumerable<T> GetByName(String name);
