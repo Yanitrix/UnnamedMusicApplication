@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Queue
 {
-    public interface ISongQueue : IEnumerable<Song>
+    public interface ISongQueue
     {
         Song Next { get; }
 
@@ -51,7 +51,8 @@ namespace Domain.Queue
         void Set(IEnumerable<Song> songs);
 
         /// <summary>
-        /// Sets the queue to a starting position. Keeps Shuffle value
+        /// Sets the queue to a starting position. Keeps Shuffle value.
+        /// So just basically start over again from the very beginning?
         /// </summary>
         void Reset();
     }
