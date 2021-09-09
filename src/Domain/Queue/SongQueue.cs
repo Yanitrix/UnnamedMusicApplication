@@ -15,7 +15,6 @@ namespace Domain.Queue
             this.mode = new LinearPlayingMode(songs.Count);
         }
 
-
         public bool HasNext => mode.HasNext;
         
         public Song Next => songs[mode.Next];

@@ -6,9 +6,11 @@ namespace Domain.Queue
     {
         public LinearPlayingMode(int count, int current = -1) : base(count, current)
         {
+            if (count == current + 1)
+                throw new InvalidOperationException("Sequence cannot be empty.");
         }
 
-        public override int Next => ++current;
+        public override int Next => HasNext ? ++current : throw Invalid("No next item available.");
 
         public override bool HasNext => current < count - 1;
         
@@ -29,7 +31,7 @@ namespace Domain.Queue
 
         public override bool HasPrevious => current >= 0;
 
-        public override int Previous => --current;
+        public override int Previous => HasPrevious ? --current : throw Invalid("No previous item available.");
 
         public override int Current => current;
         
@@ -37,5 +39,7 @@ namespace Domain.Queue
         {
             current = -1;
         }
+
+        private InvalidOperationException Invalid(string msg) => new InvalidOperationException(msg);
     }
 }
