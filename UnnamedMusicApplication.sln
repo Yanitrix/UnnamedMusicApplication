@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "tests\Domain.Tests\Domain.Tests.csproj", "{E26AD13F-63E2-49A4-A9D9-B9FD10A471E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Networking", "src\Networking\Networking.csproj", "{CE543C61-4AFC-420A-A30B-695A66D26AD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{E26AD13F-63E2-49A4-A9D9-B9FD10A471E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E26AD13F-63E2-49A4-A9D9-B9FD10A471E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E26AD13F-63E2-49A4-A9D9-B9FD10A471E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE543C61-4AFC-420A-A30B-695A66D26AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE543C61-4AFC-420A-A30B-695A66D26AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE543C61-4AFC-420A-A30B-695A66D26AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE543C61-4AFC-420A-A30B-695A66D26AD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{9D660F9D-2701-47A0-B16E-841FC6444C97} = {BAAA7482-0E54-4FC1-BCB5-53DD5235D1D6}
 		{F6DD0318-E4A8-4B38-8CF4-498F75A61BAE} = {3B04E3EF-7493-476F-AFA0-9069B5D10CFC}
 		{E26AD13F-63E2-49A4-A9D9-B9FD10A471E2} = {3B04E3EF-7493-476F-AFA0-9069B5D10CFC}
+		{CE543C61-4AFC-420A-A30B-695A66D26AD0} = {BAAA7482-0E54-4FC1-BCB5-53DD5235D1D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D3A46E2-5A31-4E92-B5D8-F1B3BF011BB6}
