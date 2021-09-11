@@ -12,7 +12,6 @@ namespace Domain.Queue
         public SongQueue(List<Song> songs)
         {
             this.songs = songs; 
-            this.mode = new LinearPlayingMode(songs.Count);
         }
 
         public bool HasNext => mode.HasNext;
@@ -59,7 +58,6 @@ namespace Domain.Queue
         public void Clear()
         {
             songs.Clear();
-            mode = new LinearPlayingMode(0);
         }
 
         public void Set(IEnumerable<Song> songs)
@@ -67,7 +65,6 @@ namespace Domain.Queue
             this.songs.Clear();
             var enumerable = songs.ToList();
             var count = enumerable.Count;
-            mode = new LinearPlayingMode(count);
             this.songs.AddRange(enumerable);
         }
 
