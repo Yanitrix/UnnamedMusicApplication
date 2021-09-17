@@ -55,5 +55,15 @@ namespace Domain.Queue
         /// So just basically start over again from the very beginning?
         /// </summary>
         void Reset();
+        
+        /// <summary>
+        /// Returns all songs in the queue in the current order of playing.
+        /// </summary>
+        IReadOnlyList<Song> Content { get; }
+        
+        /// <summary>
+        /// Returns index of current song.
+        /// </summary>
+        public int CurrentIndex { get; }
     }
 }
