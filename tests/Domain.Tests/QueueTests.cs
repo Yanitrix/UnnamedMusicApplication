@@ -2,6 +2,7 @@
 using Domain.Queue;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using Xunit;
 
 namespace Domain.Tests
@@ -20,7 +21,7 @@ namespace Domain.Tests
         {
             ISongQueue queue = new SongQueue();
             queue.Set(first);
-            Song[] actual = queue.ToArray();
+            Song[] actual = queue.Content.ToArray();
             Song[] expected = first.ToArray();
 
             Assert.Equal(expected, actual);
@@ -77,7 +78,7 @@ namespace Domain.Tests
             queue.Insert(song);
 
             Song[] expected = list.ToArray();
-            Song[] actual = queue.ToArray();
+            Song[] actual = queue.Content.ToArray();
             //asserting
 
             Assert.Equal(expected, actual);
@@ -150,7 +151,7 @@ namespace Domain.Tests
             //assert
 
             Song[] expected = list.ToArray();
-            Song[] actual = queue.ToArray();
+            Song[] actual = queue.Content.ToArray();
 
             Assert.Equal(expected, actual);
         }
@@ -161,7 +162,7 @@ namespace Domain.Tests
             ISongQueue queue = new SongQueue();
             queue.Set(first);
 
-            List<Song> toExpect = new List<Song>
+            var expected = new[]
             {
                 first[0],
                 first[1],
@@ -174,14 +175,10 @@ namespace Domain.Tests
 
             _ = queue.Next;
             _ = queue.Next;
-
             queue.Replace(second);
-
-            Song[] expected = toExpect.ToArray();
-            Song[] actual = queue.ToArray();
-
-
-            Assert.Equal(expected, actual);
+            
+            Song[] actual = queue.Content.ToArray();
+            actual.Should().Equal(expected);
         }
 
         [Fact]
@@ -201,7 +198,7 @@ namespace Domain.Tests
             queue.Add(song);
 
             Song[] expected = list.ToArray();
-            Song[] actual = queue.ToArray();
+            Song[] actual = queue.Content.ToArray();
 
             Assert.Equal(expected, actual);
 
@@ -215,7 +212,7 @@ namespace Domain.Tests
 
             queue.Clear();
 
-            Assert.Empty(queue.ToArray());
+            Assert.Empty(queue.Content.ToArray());
         }
 
         [Fact]
@@ -227,7 +224,7 @@ namespace Domain.Tests
             queue.Set(first);
 
             Song[] expected = first.ToArray();
-            Song[] actual = queue.ToArray();
+            Song[] actual = queue.Content.ToArray();
 
             Assert.Equal(expected, actual);
         }

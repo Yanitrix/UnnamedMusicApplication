@@ -29,7 +29,7 @@ namespace Domain.Entities
             Song that = obj as Song;
             if (that == null) return false;
 
-            return this.Name.Equals(that.Name) && this.Id == that.Id;
+            return this.Id == that.Id;
         }
 
         public override int GetHashCode()
