@@ -7,7 +7,7 @@ namespace Networking
         void OpenConnection();
         void CloseConnection();
         string ConnectionToken { get; }
-        int ConnectionCount { get; set; }
+        int ConnectionCount { get; }
 
         event DeviceConnectedEventHandler DeviceConnected;
         event PlaylistsChangedEventHandler PlaylistsChanged;

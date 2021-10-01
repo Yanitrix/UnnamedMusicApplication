@@ -6,6 +6,6 @@ namespace Domain
     public interface ISession
     {
         public ISongQueue Queue { get; }
-        public IPlaylistRepository PlaylistRepository { get; set; }
+        public IDatabase Database { get; }
     }
 }
