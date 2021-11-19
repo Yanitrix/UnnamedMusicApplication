@@ -10,34 +10,36 @@ namespace Domain.Queue
         Song Previous { get; }
 
         public bool HasNext { get; }
-        
+
         public bool HasPrevious { get; }
-        
+
         public bool Shuffle { get; set; }
-        
+
         /// <summary>
         /// Inserts an element after current song and keeps the rest of the queue the same.
         /// </summary>
-        /// <param name="song"></param>
         void Insert(Song song);
 
         /// <summary>
         /// Inserts a collection of elements after current song and keeps the rest of the queue the same.
         /// </summary>
-        /// <param name="songs"></param>
         void Insert(IEnumerable<Song> songs);
 
         /// <summary>
         /// Clears everything after current song and inserts a collection of elements.
         /// </summary>
-        /// <param name="songs"></param>
         void Replace(IEnumerable<Song> songs);
 
+        //WHY no overload for adding multiple songs?
         /// <summary>
-        /// Adds element to the end of the queue.
+        /// Adds element at the end of the queue.
         /// </summary>
-        /// <param name="song"></param>
         void Add(Song song);
+
+        /// <summary>
+        /// Adds a collection of elements at the end of the queue.
+        /// </summary>
+        void Add(IEnumerable<Song> songs);
 
         /// <summary>
         /// Removes all elements from the queue.
@@ -47,7 +49,6 @@ namespace Domain.Queue
         /// <summary>
         /// Clears the whole queue and seeds it with given elements.
         /// </summary>
-        /// <param name="songs"></param>
         void Set(IEnumerable<Song> songs);
 
         /// <summary>
@@ -64,6 +65,6 @@ namespace Domain.Queue
         /// <summary>
         /// Returns index of current song.
         /// </summary>
-        public int CurrentIndex { get; }
+        public int CurrentIndex { get; set; }
     }
 }

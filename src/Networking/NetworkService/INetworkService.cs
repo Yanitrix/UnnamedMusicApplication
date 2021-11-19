@@ -10,7 +10,9 @@ namespace Networking
         int ConnectionCount { get; }
 
         event DeviceConnectedEventHandler DeviceConnected;
-        event PlaylistsChangedEventHandler PlaylistsChanged;
-        event QueueChangedEventHandler QueueChanged;
+        event DeviceDisconnectedEventHandler DeviceDisconnected;
+
+        IReceiver Receiver { get; }
+        ISender Sender { get; }
     }
 }

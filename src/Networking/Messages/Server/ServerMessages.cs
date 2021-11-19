@@ -3,10 +3,16 @@ using Domain.Entities;
 
 namespace Networking.Messages.Server
 {
-    public record QueueUpdatedMessage(List<Song> Songs, int Current);
+    //send to client upon connecting or when closing connection with given client
+    public record AuthorizationMessage(string Token, bool Accepted);
 
-    // Marks that Next / Previous was called on queue. 
+    //would be sent upon connecting
+    public record QueueUpdatedMessage(List<Song> Songs, int Current, bool Shuffle);
+
+    public record SetCurrentSongMessage(int Current);
+
+    public record ShuffleChangedMessage(bool Shuffle);
+
+    //Marks that Next / Previous was called on queue.
     public record QueueMovedMessage(int Direction);
-
-    public record ListPlaylistResponse(List<Playlist> Playlists);
 }

@@ -1,6 +1,7 @@
-﻿using Domain;
-using Domain.DataAccess;
+﻿using Domain.DataAccess;
+using Domain.MusicPlayer;
 using Domain.Queue;
+using Domain.Session;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.Session
@@ -13,7 +14,9 @@ namespace Infrastructure.Session
             Database = database;
         }
         
-        public ISongQueue Queue { get; }
+        public ISongQueue Queue => 
         public IDatabase Database { get; }
+
+        public IMusicPlayer Player => ;
     }
 }
