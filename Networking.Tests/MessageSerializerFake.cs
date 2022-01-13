@@ -24,5 +24,6 @@ namespace Networking.Tests
             var json = JsonSerializer.Serialize(message);
             return Encoding.UTF8.GetBytes(json);
         }
+        //TODO move Networking.Tests from /src to /tests and edit .sln file 
     }
 }
