@@ -25,7 +25,7 @@ namespace Domain.Queue
 
         public IReadOnlyList<Song> Content => history.AsReadOnly();
 
-        public int CurrentIndex { get; private set; } = -1;
+        public int CurrentIndex { get; set; } = -1;
 
         public Song Next => history[++CurrentIndex];
 
@@ -65,6 +65,11 @@ namespace Domain.Queue
         {
             ThrowIfShuffle();
             history.Add(song);
+        }
+
+        public void Add(IEnumerable<Song> songs)
+        {
+            throw new NotImplementedException();
         }
 
         public void Clear()

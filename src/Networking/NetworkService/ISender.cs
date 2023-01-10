@@ -64,4 +64,12 @@ namespace Networking
             GC.SuppressFinalize(this);
         }
     }
+
+    internal class MessageCodes
+    {
+        public static byte GetCode<T>()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
